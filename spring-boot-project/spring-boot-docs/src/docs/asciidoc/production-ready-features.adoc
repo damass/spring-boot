@@ -1553,6 +1553,7 @@ Spring Boot Actuator provides dependency management and auto-configuration for h
 - <<production-ready-metrics-export-atlas,Atlas>>
 - <<production-ready-metrics-export-datadog,Datadog>>
 - <<production-ready-metrics-export-dynatrace,Dynatrace>>
+- <<production-ready-metrics-export-dynatrace2,Dynatrace v2>>
 - <<production-ready-metrics-export-elastic,Elastic>>
 - <<production-ready-metrics-export-ganglia,Ganglia>>
 - <<production-ready-metrics-export-graphite,Graphite>>
@@ -1723,6 +1724,51 @@ You can also change the interval at which metrics are sent to Dynatrace:
 	    export:
 	      dynatrace:
 	        step: "30s"
+----
+
+
+
+[[production-ready-metrics-export-dynatrace2]]
+==== Dynatrace v2
+Dynatrace v2 registry pushes metrics to the Metrics v2 Ingest API for Dynatrace.
+To export metrics to {micrometer-registry-docs}/dynatrace2[Dynatrace v2], your URI and API Token must be provided:
+
+[source,yaml,indent=0,configprops,configblocks]
+----
+	management:
+	  metrics:
+	    export:
+	      dynatrace:
+	        apiToken: "YOUR_TOKEN"
+	        uri: "YOUR_URI"
+----
+
+NOTE: If you use the OneAgent metric API and API Token is not needed.
+
+You can also add global dimensions to every metric via the deviceName, groupName, or entityId properties.
+[source,yaml,indent=0,configprops,configblocks]
+----
+	management:
+	  metrics:
+	    export:
+	      dynatrace:
+	        deviceName: "Custom Device Name"
+            groupName: "Custom Group Name"
+            entityId: "HOST-ASDF" # Entity ID of existing Dynatrace Entity to attach metric to
+----
+
+NOTE: Entity ID can be `HOST-<ID>`, `PROCESS_GROUP_INSTANCE-<ID>`, `PROCESS_GROUP-<ID>`, `CUSTOM_DEVICE_GROUP-<ID>` or `CUSTOM_DEVICE-<ID>`
+
+Finally, you can also change the interval at which metrics are sent or the batch size to Dynatrace:
+
+[source,yaml,indent=0,configprops,configblocks]
+----
+	management:
+	  metrics:
+	    export:
+	      dynatrace:
+	        step: "30s"
+            batchSize: "1000" # Default/Max is 1000
 ----
 
 

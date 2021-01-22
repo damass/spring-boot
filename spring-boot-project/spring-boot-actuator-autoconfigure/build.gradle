@@ -44,6 +44,7 @@ dependencies {
 	optional("io.micrometer:micrometer-registry-atlas")
 	optional("io.micrometer:micrometer-registry-datadog")
 	optional("io.micrometer:micrometer-registry-dynatrace")
+	optional("io.micrometer:micrometer-registry-dynatrace2")
 	optional("io.micrometer:micrometer-registry-elastic")
 	optional("io.micrometer:micrometer-registry-ganglia")
 	optional("io.micrometer:micrometer-registry-graphite")
